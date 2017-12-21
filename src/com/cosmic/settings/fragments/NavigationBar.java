@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.aquarios.coralreef.fragments;
+package com.cosmic.settings.fragments;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 
 import com.android.settings.SettingsPreferenceFragment;
-import com.aquarios.coralreef.preference.CustomSeekBarPreference;
+import com.cosmic.settings.preference.CustomSeekBarPreference;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.utils.du.ActionConstants;
 import com.android.internal.utils.du.Config;

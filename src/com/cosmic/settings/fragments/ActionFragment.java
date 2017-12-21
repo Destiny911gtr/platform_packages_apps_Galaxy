@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Handle assignable action dialogs and instances of the ActionPreference
+ * Handle assignable action dialogs and instances of the ActionPreferences
  * class that holds target widget state
  */
 
-package com.aquarios.coralreef.fragments;
+package com.cosmic.settings.fragments;
 
 import java.util.ArrayList;
 
@@ -28,9 +28,9 @@ import com.android.internal.utils.du.Config;
 import com.android.internal.utils.du.Config.ActionConfig;
 import com.android.internal.utils.du.Config.ButtonConfig;
 
-import com.aquarios.coralreef.ShortcutPickHelper;
-import com.aquarios.coralreef.preference.ActionPreference;
-import com.aquarios.coralreef.CustomActionListAdapter;
+import com.cosmic.settings.ShortcutPickHelper;
+import com.cosmic.settings.preference.ActionPreferences;
+import com.cosmic.settings.CustomActionListAdapter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -53,7 +53,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
     private static final String KEY_FOCUSED_PREFERENCE = "key_focused_preference";
 
     private ShortcutPickHelper mPicker;
-    protected ArrayList<ActionPreference> mPrefHolder;
+    protected ArrayList<ActionPreferences> mPrefHolder;
     private String mHolderTag;
     private Defaults mDefaults;
     private ArrayList<ButtonConfig> mButtons;
@@ -69,7 +69,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
             }
         }
         mPicker = new ShortcutPickHelper(getActivity(), this);
-        mPrefHolder = new ArrayList<ActionPreference>();
+        mPrefHolder = new ArrayList<ActionPreferences>();
     }
 
     @Override
@@ -90,8 +90,8 @@ public class ActionFragment extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference instanceof ActionPreference) {
-            mHolderTag = ((ActionPreference)preference).getTag();
+        if (preference instanceof ActionPreferences) {
+            mHolderTag = ((ActionPreferences)preference).getTag();
             showDialog(DIALOG_CATEGORY);
             return true;
         }
@@ -176,17 +176,17 @@ public class ActionFragment extends SettingsPreferenceFragment implements
         return false;
     }
 
-    protected void onActionPolicyEnforced(ArrayList<ActionPreference> prefs) {
+    protected void onActionPolicyEnforced(ArrayList<ActionPreferences> prefs) {
     }
 
-    protected void setActionPreferencesEnabled(boolean enabled) {
-        for (ActionPreference pref : mPrefHolder) {
+    protected void setActionPreferencessEnabled(boolean enabled) {
+        for (ActionPreferences pref : mPrefHolder) {
             pref.setEnabled(enabled);
         }
     }
 
     /**
-     * load our button lists and ActionPreferences map button action targets from preference keys
+     * load our button lists and ActionPreferencess map button action targets from preference keys
      * and defaults config maps subclass is required to set desired Defaults interface int
      * ActionContants
      */
@@ -199,12 +199,12 @@ public class ActionFragment extends SettingsPreferenceFragment implements
                 PreferenceCategory cat = (PreferenceCategory) pref;
                 for (int j = 0; j < cat.getPreferenceCount(); j++) {
                     Preference child = cat.getPreference(j);
-                    if (child instanceof ActionPreference) {
-                        mPrefHolder.add((ActionPreference) child);
+                    if (child instanceof ActionPreferences) {
+                        mPrefHolder.add((ActionPreferences) child);
                     }
                 }
-            } else if (pref instanceof ActionPreference) {
-                mPrefHolder.add((ActionPreference) pref);
+            } else if (pref instanceof ActionPreferences) {
+                mPrefHolder.add((ActionPreferences) pref);
             }
         }
         loadAndSetConfigs();
@@ -213,7 +213,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
     private void loadAndSetConfigs() {
         mButtons = Config.getConfig(getActivity(), mDefaults);
         mDefaultButtons = Config.getDefaultConfig(getActivity(), mDefaults);
-        for (ActionPreference pref : mPrefHolder) {
+        for (ActionPreferences pref : mPrefHolder) {
             pref.setDefaults(mDefaults);
             ButtonConfig button = mButtons.get(pref.getConfigMap().button);
             ActionConfig action = button.getActionConfig(pref.getConfigMap().action);
@@ -237,7 +237,7 @@ public class ActionFragment extends SettingsPreferenceFragment implements
     }
 
     protected void findAndUpdatePreference(ActionConfig action, String tag) {
-        for (ActionPreference pref : mPrefHolder) {
+        for (ActionPreferences pref : mPrefHolder) {
             if (pref.getTag().equals(mHolderTag)) {
                 if (action == null) {
                     action = pref.getDefaultActionConfig();

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.aquarios.coralreef.fragments;
+package com.cosmic.settings.fragments;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
@@ -24,7 +24,7 @@ import android.app.ActionBar;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.UserHandle;
-import com.aquarios.coralreef.preference.CustomSeekBarPreference;
+import com.cosmic.settings.preference.CustomSeekBarPreference;
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v14.preference.SwitchPreference;

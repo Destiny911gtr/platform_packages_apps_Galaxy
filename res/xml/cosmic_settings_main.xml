@@ -45,4 +45,9 @@
             android:fragment="com.cosmic.settings.fragments.MiscSettings"
             android:icon="@drawable/ic_cosmic_misc"/>
 
+       <!-- Buttons -->
+       <Preference
+	    android:key="cosmic_button_settings"
+	    android:title="@string/button_settings_title"
+	    android:fragment="com.cosmic.settings.fragments.ButtonSettings"
 </PreferenceScreen>

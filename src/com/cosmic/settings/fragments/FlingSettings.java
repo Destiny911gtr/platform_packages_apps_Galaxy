@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.aquarios.coralreef.fragments;
+package com.cosmic.settings.fragments;
 
 import java.util.ArrayList;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-import com.aquarios.coralreef.preference.CustomSeekBarPreference;
+import com.cosmic.settings.preference.CustomSeekBarPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.utils.du.ActionConstants;
@@ -28,8 +28,8 @@ import com.android.internal.utils.du.ActionHandler;
 import com.android.internal.utils.du.DUActionUtils;
 import com.android.internal.utils.du.Config.ButtonConfig;
 import com.android.settings.R;
-import com.aquarios.coralreef.IconPickHelper;
-import com.aquarios.coralreef.preference.ActionPreference;
+import com.cosmic.settings.IconPickHelper;
+import com.cosmic.settings.preference.ActionPreferences;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -330,7 +330,7 @@ public class FlingSettings extends ActionFragment implements
         return true;
     }
 
-    protected void onActionPolicyEnforced(ArrayList<ActionPreference> prefs) {
+    protected void onActionPolicyEnforced(ArrayList<ActionPreferences> prefs) {
         enforceAction(prefs, ActionHandler.SYSTEMUI_TASK_BACK);
         enforceAction(prefs, ActionHandler.SYSTEMUI_TASK_HOME);
     }
@@ -338,15 +338,15 @@ public class FlingSettings extends ActionFragment implements
     /*
      * Iterate the list: if only one instance, disable it otherwise, enable
      */
-    private void enforceAction(ArrayList<ActionPreference> prefs, String action) {
-        ArrayList<ActionPreference> actionPrefs = new ArrayList<ActionPreference>();
-        for (ActionPreference pref : prefs) {
+    private void enforceAction(ArrayList<ActionPreferences> prefs, String action) {
+        ArrayList<ActionPreferences> actionPrefs = new ArrayList<ActionPreferences>();
+        for (ActionPreferences pref : prefs) {
             if (pref.getActionConfig().getAction().equals(action)) {
                 actionPrefs.add(pref);
             }
         }
         boolean moreThanOne = actionPrefs.size() > 1;
-        for (ActionPreference pref : actionPrefs) {
+        for (ActionPreferences pref : actionPrefs) {
             pref.setEnabled(moreThanOne);
         }
     }

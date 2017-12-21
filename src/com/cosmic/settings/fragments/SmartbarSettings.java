@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.aquarios.coralreef.fragments;
+package com.cosmic.settings.fragments;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -54,7 +54,7 @@ import com.android.internal.utils.du.Config;
 import com.android.internal.utils.du.Config.ButtonConfig;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.aquarios.coralreef.preference.CustomSeekBarPreference;
+import com.cosmic.settings.preference.CustomSeekBarPreference;
 
 public class SmartbarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
